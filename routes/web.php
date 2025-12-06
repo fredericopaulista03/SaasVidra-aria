@@ -26,7 +26,7 @@ Route::middleware(['web'])->group(function () {
         
         // Plans Management
         Route::resource('planos', App\Http\Controllers\Landlord\PlanController::class);
-        Route::post('planos/{plan}/toggle-status', [App\Http\Controllers\Landlord\PlanController::class, 'toggleStatus'])->name('plans.toggle-status');
+        Route::post('planos/{plan}/toggle-status', [App\Http\Controllers\Landlord\PlanController::class, 'toggleStatus'])->name('planos.toggle-status');
         
         Route::resource('subscriptions', App\Http\Controllers\Landlord\SubscriptionController::class);
         Route::resource('invoices', App\Http\Controllers\Landlord\InvoiceController::class);
