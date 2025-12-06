@@ -25,8 +25,24 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">ID da Empresa</label>
-                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->id }}</p>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">Telefone do Proprietário</label>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->owner_phone }}</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">CPF/CNPJ</label>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->document }}</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">Site da Empresa</label>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">
+                                @if($tenant->website)
+                                    <a href="{{ $tenant->website }}" target="_blank" class="text-blue-600 hover:underline">{{ $tenant->website }}</a>
+                                @else
+                                    <span class="text-gray-400">Não informado</span>
+                                @endif
+                            </p>
                         </div>
                         
                         <div>
@@ -45,38 +61,11 @@
                             <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">Criado em</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->created_at->format('d/m/Y H:i') }}</p>
                         </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">Atualizado em</label>
-                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->updated_at->format('d/m/Y H:i') }}</p>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Domínios -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Domínios</h3>
-                    
-                    @if($tenant->domains->count() > 0)
-                        <ul class="space-y-2">
-                            @foreach($tenant->domains as $domain)
-                                <li class="flex items-center">
-                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <a href="http://{{ $domain->domain }}" target="_blank" class="text-blue-600 hover:underline">
-                                        {{ $domain->domain }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Nenhum domínio configurado.</p>
-                    @endif
-                </div>
-            </div>
+
 
             <!-- Assinaturas -->
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">

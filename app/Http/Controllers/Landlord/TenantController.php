@@ -38,7 +38,9 @@ class TenantController extends Controller
             'company_name' => 'required|string|max:255',
             'name' => 'required|string|max:255', // Owner Name
             'email' => 'required|email|max:255|unique:users,email',
-            'domain' => 'required|string|max:255|unique:domains,domain',
+            'owner_phone' => 'required|string|max:20',
+            'document' => 'required|string|max:18', // CPF or CNPJ
+            'website' => 'nullable|url|max:255',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -54,16 +56,16 @@ class TenantController extends Controller
                 $counter++;
             }
             
-            // 2. Create Tenant with company name in data column
+            // 2. Create Tenant with company data
             $tenant = Tenant::create([
                 'id' => $tenantId,
+                'website' => $validated['website'] ?? null,
+                'owner_phone' => $validated['owner_phone'],
+                'document' => $validated['document'],
                 'data' => [
                     'company_name' => $validated['company_name'],
                 ],
             ]);
-            
-            // 3. Create Domain
-            $tenant->domains()->create(['domain' => $validated['domain']]);
 
             // 4. Create Admin User for Tenant
             $user = User::create([

@@ -20,11 +20,25 @@
                                 <x-input-error :messages="$errors->get('company_name')" class="mt-2" />
                             </div>
 
-                            <!-- Domain -->
+                            <!-- Owner Phone -->
                             <div>
-                                <x-input-label for="domain" :value="__('Domínio de Acesso')" />
-                                <x-text-input id="domain" class="block mt-1 w-full" type="text" name="domain" :value="old('domain')" required placeholder="ex: centro.vidracaria.com" />
-                                <x-input-error :messages="$errors->get('domain')" class="mt-2" />
+                                <x-input-label for="owner_phone" :value="__('Telefone do Proprietário')" />
+                                <x-text-input id="owner_phone" class="block mt-1 w-full" type="text" name="owner_phone" :value="old('owner_phone')" required placeholder="(00) 00000-0000" />
+                                <x-input-error :messages="$errors->get('owner_phone')" class="mt-2" />
+                            </div>
+
+                            <!-- Document (CPF/CNPJ) -->
+                            <div>
+                                <x-input-label for="document" :value="__('CPF ou CNPJ')" />
+                                <x-text-input id="document" class="block mt-1 w-full" type="text" name="document" :value="old('document')" required placeholder="000.000.000-00 ou 00.000.000/0000-00" />
+                                <x-input-error :messages="$errors->get('document')" class="mt-2" />
+                            </div>
+
+                            <!-- Website -->
+                            <div>
+                                <x-input-label for="website" :value="__('Site da Empresa (Opcional)')" />
+                                <x-text-input id="website" class="block mt-1 w-full" type="url" name="website" :value="old('website')" placeholder="https://exemplo.com.br" />
+                                <x-input-error :messages="$errors->get('website')" class="mt-2" />
                             </div>
 
                             <!-- Owner Name -->

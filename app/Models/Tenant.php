@@ -9,6 +9,8 @@ class Tenant extends BaseTenant
 {
     use HasDomains;
 
+    protected $fillable = ['id', 'data', 'website', 'owner_phone', 'document'];
+
     public static function getCustomColumns(): array
     {
         return [
