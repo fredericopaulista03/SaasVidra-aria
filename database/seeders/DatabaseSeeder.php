@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesAndPermissionsSeeder::class,
             SuperAdminSeeder::class,
+            PlansSeeder::class,
             // TenantSeeder::class, // Optional: Uncomment if you want to seed tenants
         ]);
     }

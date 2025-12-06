@@ -17,6 +17,14 @@ Route::middleware(['web'])->group(function () {
     // Landlord Routes (Super Admin)
     Route::middleware(['auth', 'verified', App\Http\Middleware\EnsureUserIsSuperAdmin::class])->prefix('landlord')->name('landlord.')->group(function () {
         Route::resource('tenants', App\Http\Controllers\Landlord\TenantController::class);
+        
+        // SaaS Management
+        Route::resource('plans', App\Http\Controllers\Landlord\PlanController::class);
+        Route::post('plans/{plan}/toggle-status', [App\Http\Controllers\Landlord\PlanController::class, 'toggleStatus'])->name('plans.toggle-status');
+        
+        Route::resource('subscriptions', App\Http\Controllers\Landlord\SubscriptionController::class);
+        Route::resource('invoices', App\Http\Controllers\Landlord\InvoiceController::class);
+        Route::get('payment-logs', [App\Http\Controllers\Landlord\PaymentLogController::class, 'index'])->name('payment-logs.index');
     });
 
     // Shared Auth Routes (Profile) - Adjusted to handle context dynamically or via middleware
