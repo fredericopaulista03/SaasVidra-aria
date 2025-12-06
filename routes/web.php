@@ -5,6 +5,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+require __DIR__.'/debug.php';
+
+$primaryDomain = parse_url(config('app.url'), PHP_URL_HOST);
+
 // Register routes for the primary domain (Global for now to debug 404)
 Route::middleware(['web'])->group(function () {
     Route::get('/', function () {
