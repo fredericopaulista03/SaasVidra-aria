@@ -9,7 +9,7 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <form action="{{ route('landlord.plans.update', $plan) }}" method="POST">
+                    <form action="{{ route('landlord.planos.update', $plan) }}" method="POST">
                         @csrf
                         @method('PUT')
 
