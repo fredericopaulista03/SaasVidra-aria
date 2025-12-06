@@ -18,24 +18,24 @@ Route::middleware(['web'])->group(function () {
     });
 
     // Landlord Routes (Super Admin)
-    Route::middleware(['auth', 'verified', App\Http\Middleware\EnsureUserIsSuperAdmin::class])->prefix('landlord')->name('landlord.')->group(function () {
+    Route::middleware(['auth', 'verified', App\Http\Middleware\EnsureUserIsSuperAdmin::class])->prefix('admin')->name('landlord.')->group(function () {
         // Tenants Management
-        Route::resource('tenants', App\Http\Controllers\Landlord\TenantController::class);
-        Route::post('tenants/{tenant}/suspend', [App\Http\Controllers\Landlord\TenantController::class, 'suspend'])->name('tenants.suspend');
-        Route::post('tenants/{tenant}/activate', [App\Http\Controllers\Landlord\TenantController::class, 'activate'])->name('tenants.activate');
+        Route::resource('empresas', App\Http\Controllers\Landlord\TenantController::class);
+        Route::post('empresas/{tenant}/suspender', [App\Http\Controllers\Landlord\TenantController::class, 'suspend'])->name('tenants.suspend');
+        Route::post('empresas/{tenant}/ativar', [App\Http\Controllers\Landlord\TenantController::class, 'activate'])->name('tenants.activate');
         
         // Plans Management
-        Route::resource('plans', App\Http\Controllers\Landlord\PlanController::class);
-        Route::post('plans/{plan}/toggle-status', [App\Http\Controllers\Landlord\PlanController::class, 'toggleStatus'])->name('plans.toggle-status');
+        Route::resource('planos', App\Http\Controllers\Landlord\PlanController::class);
+        Route::post('planos/{plan}/toggle-status', [App\Http\Controllers\Landlord\PlanController::class, 'toggleStatus'])->name('plans.toggle-status');
         
         Route::resource('subscriptions', App\Http\Controllers\Landlord\SubscriptionController::class);
         Route::resource('invoices', App\Http\Controllers\Landlord\InvoiceController::class);
         Route::get('payment-logs', [App\Http\Controllers\Landlord\PaymentLogController::class, 'index'])->name('payment-logs.index');
         
         // Settings
-        Route::get('settings', [App\Http\Controllers\Landlord\SettingsController::class, 'index'])->name('settings.index');
-        Route::post('settings', [App\Http\Controllers\Landlord\SettingsController::class, 'update'])->name('settings.update');
-        Route::post('settings/test-email', [App\Http\Controllers\Landlord\SettingsController::class, 'testEmail'])->name('settings.test-email');
+        Route::get('configuracoes', [App\Http\Controllers\Landlord\SettingsController::class, 'index'])->name('settings.index');
+        Route::post('configuracoes', [App\Http\Controllers\Landlord\SettingsController::class, 'update'])->name('settings.update');
+        Route::post('configuracoes/test-email', [App\Http\Controllers\Landlord\SettingsController::class, 'testEmail'])->name('settings.test-email');
         
         // Email Templates
         Route::get('email-templates', [App\Http\Controllers\Landlord\EmailTemplateController::class, 'index'])->name('email-templates.index');
@@ -45,9 +45,9 @@ Route::middleware(['web'])->group(function () {
 
     // Shared Auth Routes (Profile) - Adjusted to handle context dynamically or via middleware
     Route::middleware('auth')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
     require __DIR__.'/auth.php';
