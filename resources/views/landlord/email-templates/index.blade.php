@@ -33,7 +33,7 @@
                                         {{ $template->subject }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('landlord.email-templates.edit', $template) }}" 
+                                        <a href="{{ route('admin.email-templates.edit', $template) }}" 
                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">
                                             Editar
                                         </a>

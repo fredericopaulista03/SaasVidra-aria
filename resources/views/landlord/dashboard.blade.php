@@ -40,17 +40,17 @@
 
             <!-- Quick Links -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <a href="{{ route('landlord.plans.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white p-6 rounded-lg shadow-lg transition">
+                <a href="{{ route('admin.plans.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white p-6 rounded-lg shadow-lg transition">
                     <h3 class="text-lg font-semibold mb-2">Planos</h3>
                     <p class="text-sm opacity-90">Gerenciar planos de assinatura</p>
                 </a>
 
-                <a href="{{ route('landlord.subscriptions.index') }}" class="bg-green-500 hover:bg-green-600 text-white p-6 rounded-lg shadow-lg transition">
+                <a href="{{ route('admin.subscriptions.index') }}" class="bg-green-500 hover:bg-green-600 text-white p-6 rounded-lg shadow-lg transition">
                     <h3 class="text-lg font-semibold mb-2">Assinaturas</h3>
                     <p class="text-sm opacity-90">Ver todas as assinaturas</p>
                 </a>
 
-                <a href="{{ route('landlord.invoices.index') }}" class="bg-purple-500 hover:bg-purple-600 text-white p-6 rounded-lg shadow-lg transition">
+                <a href="{{ route('admin.invoices.index') }}" class="bg-purple-500 hover:bg-purple-600 text-white p-6 rounded-lg shadow-lg transition">
                     <h3 class="text-lg font-semibold mb-2">Faturas</h3>
                     <p class="text-sm opacity-90">{{ $stats['pending_invoices'] }} pendentes</p>
                 </a>

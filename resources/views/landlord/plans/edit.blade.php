@@ -9,7 +9,7 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <form action="{{ route('landlord.plans.update', $plan) }}" method="POST">
+                    <form action="{{ route('admin.plans.update', $plan) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="mt-6 flex justify-end space-x-3">
-                            <a href="{{ route('landlord.plans.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Cancelar</a>
+                            <a href="{{ route('admin.plans.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Cancelar</a>
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Atualizar</button>
                         </div>
                     </form>

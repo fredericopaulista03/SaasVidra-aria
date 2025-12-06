@@ -15,7 +15,7 @@
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <form action="{{ route('landlord.email-templates.update', $emailTemplate) }}" method="POST">
+                    <form action="{{ route('admin.email-templates.update', $emailTemplate) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -64,7 +64,7 @@
 
                         <!-- Buttons -->
                         <div class="flex justify-end space-x-3">
-                            <a href="{{ route('landlord.email-templates.index') }}" 
+                            <a href="{{ route('admin.email-templates.index') }}" 
                                class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
                                 Cancelar
                             </a>

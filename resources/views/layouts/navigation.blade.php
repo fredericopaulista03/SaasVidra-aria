@@ -41,19 +41,19 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('landlord.tenants.index')" :active="request()->routeIs('landlord.tenants.*')">
+                        <x-nav-link :href="route('admin.tenants.index')" :active="request()->routeIs('admin.tenants.*')">
                             {{ __('Vidraçarias') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('landlord.plans.index')" :active="request()->routeIs('landlord.plans.*')">
+                        <x-nav-link :href="route('admin.plans.index')" :active="request()->routeIs('admin.plans.*')">
                             {{ __('Planos') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('landlord.subscriptions.index')" :active="request()->routeIs('landlord.subscriptions.*')">
+                        <x-nav-link :href="route('admin.subscriptions.index')" :active="request()->routeIs('admin.subscriptions.*')">
                             {{ __('Assinaturas') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('landlord.invoices.index')" :active="request()->routeIs('landlord.invoices.*')">
+                        <x-nav-link :href="route('admin.invoices.index')" :active="request()->routeIs('admin.invoices.*')">
                             {{ __('Faturas') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('landlord.settings.index')" :active="request()->routeIs('landlord.settings.*')">
+                        <x-nav-link :href="route('admin.settings.index')" :active="request()->routeIs('admin.settings.*')">
                             {{ __('Configurações') }}
                         </x-nav-link>
                     @endif
@@ -126,19 +126,19 @@
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('landlord.tenants.index')" :active="request()->routeIs('landlord.tenants.*')">
+                <x-responsive-nav-link :href="route('admin.tenants.index')" :active="request()->routeIs('admin.tenants.*')">
                     {{ __('Vidraçarias') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('landlord.plans.index')" :active="request()->routeIs('landlord.plans.*')">
+                <x-responsive-nav-link :href="route('admin.plans.index')" :active="request()->routeIs('admin.plans.*')">
                     {{ __('Planos') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('landlord.subscriptions.index')" :active="request()->routeIs('landlord.subscriptions.*')">
+                <x-responsive-nav-link :href="route('admin.subscriptions.index')" :active="request()->routeIs('admin.subscriptions.*')">
                     {{ __('Assinaturas') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('landlord.invoices.index')" :active="request()->routeIs('landlord.invoices.*')">
+                <x-responsive-nav-link :href="route('admin.invoices.index')" :active="request()->routeIs('admin.invoices.*')">
                     {{ __('Faturas') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('landlord.settings.index')" :active="request()->routeIs('landlord.settings.*')">
+                <x-responsive-nav-link :href="route('admin.settings.index')" :active="request()->routeIs('admin.settings.*')">
                     {{ __('Configurações') }}
                 </x-responsive-nav-link>
             @endif
