@@ -13,7 +13,35 @@ class DashboardController extends Controller
 
         if ($user->tenant_id) {
             // Tenant User
-            return view('tenant.dashboard', ['user' => $user]);
+            $currentMonth = now()->month;
+            $currentYear = now()->year;
+
+            // Financial Stats
+            $revenue = \App\Models\FinancialTransaction::where('type', 'income')
+                ->whereMonth('due_date', $currentMonth)
+                ->whereYear('due_date', $currentYear)
+                ->sum('amount');
+
+            $expense = \App\Models\FinancialTransaction::where('type', 'expense')
+                ->whereMonth('due_date', $currentMonth)
+                ->whereYear('due_date', $currentYear)
+                ->sum('amount');
+
+            // Budget Stats
+            $budgetStats = \App\Models\Budget::selectRaw('status, count(*) as count')
+                ->groupBy('status')
+                ->pluck('count', 'status')
+                ->toArray();
+
+            $totalClients = \App\Models\Client::count();
+
+            return view('tenant.dashboard', [
+                'user' => $user,
+                'revenue' => $revenue,
+                'expense' => $expense,
+                'budgetStats' => $budgetStats,
+                'totalClients' => $totalClients
+            ]);
         } else {
             // Landlord User (Super Admin)
             $stats = [
