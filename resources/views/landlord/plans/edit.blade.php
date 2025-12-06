@@ -40,6 +40,8 @@
                                 <select name="billing_cycle" id="billing_cycle" required
                                     class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm">
                                     <option value="monthly" {{ old('billing_cycle', $plan->billing_cycle) === 'monthly' ? 'selected' : '' }}>Mensal</option>
+                                    <option value="quarterly" {{ old('billing_cycle', $plan->billing_cycle) === 'quarterly' ? 'selected' : '' }}>Trimestral</option>
+                                    <option value="semiannual" {{ old('billing_cycle', $plan->billing_cycle) === 'semiannual' ? 'selected' : '' }}>Semestral</option>
                                     <option value="yearly" {{ old('billing_cycle', $plan->billing_cycle) === 'yearly' ? 'selected' : '' }}>Anual</option>
                                 </select>
                             </div>

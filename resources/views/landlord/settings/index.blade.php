@@ -22,6 +22,20 @@
             <form action="{{ route('landlord.settings.update') }}" method="POST">
                 @csrf
 
+                <!-- Navigation Tabs -->
+                <div class="mb-6 border-b border-gray-200 dark:border-gray-700">
+                    <nav class="-mb-px flex space-x-8">
+                        <a href="{{ route('landlord.settings.index') }}" 
+                           class="border-b-2 border-blue-500 py-4 px-1 text-sm font-medium text-blue-600">
+                            Configurações Gerais
+                        </a>
+                        <a href="{{ route('landlord.email-templates.index') }}" 
+                           class="border-transparent hover:border-gray-300 py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400">
+                            Templates de Email
+                        </a>
+                    </nav>
+                </div>
+
                 <!-- Payment Settings -->
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
                     <div class="p-6">

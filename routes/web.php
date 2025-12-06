@@ -33,6 +33,11 @@ Route::middleware(['web'])->group(function () {
         Route::get('settings', [App\Http\Controllers\Landlord\SettingsController::class, 'index'])->name('settings.index');
         Route::post('settings', [App\Http\Controllers\Landlord\SettingsController::class, 'update'])->name('settings.update');
         Route::post('settings/test-email', [App\Http\Controllers\Landlord\SettingsController::class, 'testEmail'])->name('settings.test-email');
+        
+        // Email Templates
+        Route::get('email-templates', [App\Http\Controllers\Landlord\EmailTemplateController::class, 'index'])->name('email-templates.index');
+        Route::get('email-templates/{emailTemplate}/edit', [App\Http\Controllers\Landlord\EmailTemplateController::class, 'edit'])->name('email-templates.edit');
+        Route::put('email-templates/{emailTemplate}', [App\Http\Controllers\Landlord\EmailTemplateController::class, 'update'])->name('email-templates.update');
     });
 
     // Shared Auth Routes (Profile) - Adjusted to handle context dynamically or via middleware

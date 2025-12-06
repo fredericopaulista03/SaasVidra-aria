@@ -64,7 +64,13 @@
                                         R$ {{ number_format($plan->price, 2, ',', '.') }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                                        {{ $plan->billing_cycle === 'monthly' ? 'Mensal' : 'Anual' }}
+                                        @switch($plan->billing_cycle)
+                                            @case('monthly') Mensal @break
+                                            @case('quarterly') Trimestral @break
+                                            @case('semiannual') Semestral @break
+                                            @case('yearly') Anual @break
+                                            @default {{ ucfirst($plan->billing_cycle) }}
+                                        @endswitch
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         {{ $plan->subscriptions->count() }}
