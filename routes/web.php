@@ -15,7 +15,7 @@ Route::middleware(['web'])->group(function () {
     });
 
     // Landlord Routes (Super Admin)
-    Route::middleware(['auth', 'verified'])->prefix('landlord')->name('landlord.')->group(function () {
+    Route::middleware(['auth', 'verified', App\Http\Middleware\EnsureUserIsSuperAdmin::class])->prefix('landlord')->name('landlord.')->group(function () {
         Route::resource('tenants', App\Http\Controllers\Landlord\TenantController::class);
     });
 
