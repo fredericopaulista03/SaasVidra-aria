@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Gerenciar Vidraçarias') }}
             </h2>
-            <a href="{{ route('admin.tenants.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="{{ route('landlord.tenants.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Nova Vidraçaria
             </a>
         </div>
@@ -66,10 +66,10 @@
                                         {{ $tenant->created_at->format('d/m/Y') }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('admin.tenants.show', $tenant) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 mr-3">Ver</a>
+                                        <a href="{{ route('landlord.tenants.show', $tenant) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 mr-3">Ver</a>
                                         
                                         @if($tenant->status === 'active')
-                                            <form action="{{ route('admin.tenants.suspend', $tenant) }}" method="POST" class="inline">
+                                            <form action="{{ route('landlord.tenants.suspend', $tenant) }}" method="POST" class="inline">
                                                 @csrf
                                                 <button type="submit" class="text-orange-600 hover:text-orange-900 dark:text-orange-400 mr-3" 
                                                         onclick="return confirm('Tem certeza que deseja suspender esta empresa?')">
@@ -77,7 +77,7 @@
                                                 </button>
                                             </form>
                                         @else
-                                            <form action="{{ route('admin.tenants.activate', $tenant) }}" method="POST" class="inline">
+                                            <form action="{{ route('landlord.tenants.activate', $tenant) }}" method="POST" class="inline">
                                                 @csrf
                                                 <button type="submit" class="text-green-600 hover:text-green-900 dark:text-green-400 mr-3">
                                                     Ativar
@@ -85,7 +85,7 @@
                                             </form>
                                         @endif
                                         
-                                        <form action="{{ route('admin.tenants.destroy', $tenant) }}" method="POST" class="inline">
+                                        <form action="{{ route('landlord.tenants.destroy', $tenant) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600 hover:text-red-900">Excluir</button>

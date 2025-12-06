@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Assinaturas') }}
             </h2>
-            <a href="{{ route('admin.subscriptions.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="{{ route('landlord.subscriptions.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Nova Assinatura
             </a>
         </div>
@@ -72,8 +72,8 @@
                                         {{ $subscription->ends_at ? $subscription->ends_at->format('d/m/Y') : '-' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('admin.subscriptions.show', $subscription) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 mr-3">Ver</a>
-                                        <a href="{{ route('admin.subscriptions.edit', $subscription) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">Editar</a>
+                                        <a href="{{ route('landlord.subscriptions.show', $subscription) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 mr-3">Ver</a>
+                                        <a href="{{ route('landlord.subscriptions.edit', $subscription) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">Editar</a>
                                     </td>
                                 </tr>
                             @empty

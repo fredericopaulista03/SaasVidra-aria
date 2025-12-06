@@ -9,7 +9,7 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <form action="{{ route('admin.plans.store') }}" method="POST">
+                    <form action="{{ route('landlord.plans.store') }}" method="POST">
                         @csrf
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -123,7 +123,7 @@
 
                         <!-- Buttons -->
                         <div class="mt-6 flex justify-end space-x-3">
-                            <a href="{{ route('admin.plans.index') }}"
+                            <a href="{{ route('landlord.plans.index') }}"
                                 class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
                                 Cancelar
                             </a>
