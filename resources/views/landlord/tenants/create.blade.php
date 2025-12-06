@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('landlord.tenants.store') }}" method="POST">
+                    <form action="{{ route('landlord.empresas.store') }}" method="POST">
                         @csrf
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="flex items-center justify-end mt-6">
-                            <a href="{{ route('landlord.tenants.index') }}" class="text-gray-600 hover:text-gray-900 mr-4">Cancelar</a>
+                            <a href="{{ route('landlord.empresas.index') }}" class="text-gray-600 hover:text-gray-900 mr-4">Cancelar</a>
                             <x-primary-button>
                                 {{ __('Criar Vidraçaria') }}
                             </x-primary-button>

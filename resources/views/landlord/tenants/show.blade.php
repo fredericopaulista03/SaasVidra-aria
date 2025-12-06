@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Detalhes da Empresa: ') }} {{ $tenant->id }}
             </h2>
-            <a href="{{ route('landlord.tenants.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            <a href="{{ route('landlord.empresas.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                 Voltar
             </a>
         </div>
@@ -132,7 +132,7 @@
                     
                     <div class="flex space-x-3">
                         @if($tenant->status === 'active')
-                            <form action="{{ route('landlord.tenants.suspend', $tenant) }}" method="POST">
+                            <form action="{{ route('landlord.empresas.suspend', $tenant) }}" method="POST">
                                 @csrf
                                 <button type="submit" 
                                         class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
@@ -141,7 +141,7 @@
                                 </button>
                             </form>
                         @else
-                            <form action="{{ route('landlord.tenants.activate', $tenant) }}" method="POST">
+                            <form action="{{ route('landlord.empresas.activate', $tenant) }}" method="POST">
                                 @csrf
                                 <button type="submit" 
                                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
@@ -150,7 +150,7 @@
                             </form>
                         @endif
                         
-                        <form action="{{ route('landlord.tenants.destroy', $tenant) }}" method="POST">
+                        <form action="{{ route('landlord.empresas.destroy', $tenant) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" 
