@@ -79,7 +79,7 @@ class TenantController extends Controller
             // $user->assignRole('owner'); // This might require the role to exist for this tenant_id if using team_id
         });
 
-        return redirect()->route('landlord.tenants.index')
+        return redirect()->route('landlord.empresas.index')
             ->with('success', 'Vidraçaria criada com sucesso!');
     }
 
@@ -115,7 +115,7 @@ class TenantController extends Controller
     {
         $tenant->update(['status' => 'suspended']);
 
-        return redirect()->route('landlord.tenants.index')
+        return redirect()->route('landlord.empresas.index')
             ->with('success', 'Tenant suspenso com sucesso!');
     }
 
@@ -126,7 +126,7 @@ class TenantController extends Controller
     {
         $tenant->update(['status' => 'active']);
 
-        return redirect()->route('landlord.tenants.index')
+        return redirect()->route('landlord.empresas.index')
             ->with('success', 'Tenant ativado com sucesso!');
     }
 
@@ -137,7 +137,7 @@ class TenantController extends Controller
     {
         // Check if tenant has active subscriptions
         if ($tenant->subscriptions()->where('status', 'active')->exists()) {
-            return redirect()->route('landlord.tenants.index')
+            return redirect()->route('landlord.empresas.index')
                 ->with('error', 'Não é possível excluir um tenant com assinaturas ativas. Cancele as assinaturas primeiro.');
         }
 
@@ -146,7 +146,7 @@ class TenantController extends Controller
         // In Single DB, we should delete users with this tenant_id
         User::where('tenant_id', $tenant->id)->delete();
 
-        return redirect()->route('landlord.tenants.index')
+        return redirect()->route('landlord.empresas.index')
             ->with('success', 'Vidraçaria excluída com sucesso!');
     }
 }
