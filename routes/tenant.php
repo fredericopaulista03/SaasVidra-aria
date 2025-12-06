@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
-use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,84 +17,26 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |
 */
 
-Route::middleware([
-    'web',
-    InitializeTenancyByDomain::class,
-    PreventAccessFromCentralDomains::class,
-])->group(function () {
-    Route::get('/', function () {
-        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-    });
 
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
-        ->middleware(['auth', 'verified'])
-        ->name('tenant.dashboard');
+// Tenant Routes (Loaded via web.php with InitializeTenancyByUser middleware)
 
-    Route::resource('clients', App\Http\Controllers\Tenant\ClientController::class)
-        ->names('tenant.clients')
-        ->middleware(['auth', 'verified']);
+Route::name('tenant.')->group(function () {
+    
+    // Dashboard is already defined in web.php but we can alias it here if needed or keep it consistent
+    // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('products', App\Http\Controllers\Tenant\ProductController::class)
-        ->names('tenant.products')
-        ->middleware(['auth', 'verified']);
+    Route::resource('clients', App\Http\Controllers\Tenant\ClientController::class);
+    Route::resource('products', App\Http\Controllers\Tenant\ProductController::class);
+    Route::resource('budgets', App\Http\Controllers\Tenant\BudgetController::class);
 
-    Route::resource('budgets', App\Http\Controllers\Tenant\BudgetController::class)
-        ->names('tenant.budgets')
-        ->middleware(['auth', 'verified']);
+    Route::get('/kanban', [App\Http\Controllers\Tenant\KanbanController::class, 'index'])->name('kanban.index');
+    Route::put('/kanban/{card}', [App\Http\Controllers\Tenant\KanbanController::class, 'update'])->name('kanban.update');
 
-    Route::get('/kanban', [App\Http\Controllers\Tenant\KanbanController::class, 'index'])
-        ->name('tenant.kanban.index')
-        ->middleware(['auth', 'verified']);
-        
-    Route::put('/kanban/{card}', [App\Http\Controllers\Tenant\KanbanController::class, 'update'])
-        ->name('tenant.kanban.update')
-        ->middleware(['auth', 'verified']);
-
-    Route::resource('finance', App\Http\Controllers\Tenant\FinancialTransactionController::class)
-        ->names('tenant.finance')
-        ->middleware(['auth', 'verified']);
-
-    Route::get('/schedule', [App\Http\Controllers\Tenant\ScheduleController::class, 'index'])
-        ->name('tenant.schedule.index')
-        ->middleware(['auth', 'verified']);
+    Route::resource('finance', App\Http\Controllers\Tenant\FinancialTransactionController::class);
+    Route::get('/schedule', [App\Http\Controllers\Tenant\ScheduleController::class, 'index'])->name('schedule.index');
 
     // Chat Routes
-    Route::get('/chat', [App\Http\Controllers\Tenant\ChatController::class, 'index'])
-        ->name('tenant.chat.index')
-        ->middleware(['auth', 'verified']);
-    Route::post('/chat', [App\Http\Controllers\Tenant\ChatController::class, 'store'])
-        ->name('tenant.chat.store')
-        ->middleware(['auth', 'verified']);
-
-    Route::name('tenant.')->group(function () {
-        Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
-        require __DIR__.'/auth.php';
-    });
+    Route::get('/chat', [App\Http\Controllers\Tenant\ChatController::class, 'index'])->name('chat.index');
+    Route::post('/chat', [App\Http\Controllers\Tenant\ChatController::class, 'store'])->name('chat.store');
 });
 
-// Webhook Route (Public)
-Route::middleware([
-    'api',
-    InitializeTenancyByDomain::class,
-    PreventAccessFromCentralDomains::class,
-])->group(function () {
-    Route::post('/webhook/evolution', [App\Http\Controllers\Tenant\ChatController::class, 'webhook'])
-        ->name('tenant.chat.webhook');
-});
-
-// Client Portal Routes (Public but Signed)
-Route::middleware([
-    'web',
-    'signed',
-    InitializeTenancyByDomain::class,
-    PreventAccessFromCentralDomains::class,
-])->group(function () {
-    Route::get('/portal/budget/{budget}', [App\Http\Controllers\Tenant\ClientPortalController::class, 'show'])
-        ->name('tenant.portal.budget');
-    Route::get('/portal/budget/{budget}/approve', [App\Http\Controllers\Tenant\ClientPortalController::class, 'approve'])
-        ->name('tenant.portal.approve');
-    Route::get('/portal/budget/{budget}/reject', [App\Http\Controllers\Tenant\ClientPortalController::class, 'reject'])
-        ->name('tenant.portal.reject');
-});

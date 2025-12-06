@@ -34,8 +34,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        $prefix = request()->routeIs('landlord.*') ? 'landlord.' : 'tenant.';
-        return Redirect::route($prefix . 'profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**

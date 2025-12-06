@@ -1,6 +1,5 @@
 <?php
 
-// Force git change
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -9,42 +8,39 @@ require __DIR__.'/debug.php';
 
 $primaryDomain = parse_url(config('app.url'), PHP_URL_HOST);
 
-// Register routes for the primary domain (Global for now to debug 404)
+// Register routes for the primary domain (Global)
 Route::middleware(['web'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->middleware(['auth', 'verified'])
-        ->name('dashboard');
-
-    // Landlord Routes
+    // Landlord Routes (Super Admin)
     Route::middleware(['auth', 'verified'])->prefix('landlord')->name('landlord.')->group(function () {
         Route::resource('tenants', App\Http\Controllers\Landlord\TenantController::class);
     });
 
+    // Shared Auth Routes (Profile) - Adjusted to handle context dynamically or via middleware
     Route::middleware('auth')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('landlord.profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('landlord.profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('landlord.profile.destroy');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    Route::name('landlord.')->group(function () {
-        require __DIR__.'/auth.php';
-    });
+    require __DIR__.'/auth.php';
 });
 
-// Redirect other central domains to the primary domain
-foreach (config('tenancy.central_domains') as $domain) {
-    if ($domain === $primaryDomain) {
-        continue;
-    }
+// Tenant Routes - Initialized by User Session
+Route::middleware(['web', 'auth', 'verified', App\Http\Middleware\InitializeTenancyByUser::class])
+    ->group(function () {
+        // Load tenant routes manually here since we disabled automatic loading
+        // We can require the file, but we need to ensure the file itself doesn't have conflicting middleware
+        // For now, let's define the core tenant dashboard here to test
+        
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::domain($domain)->group(function () use ($primaryDomain) {
-        Route::any('/{path?}', function ($path = null) use ($primaryDomain) {
-            $url = config('app.url') . ($path ? '/' . $path : '');
-            return redirect($url, 301);
-        })->where('path', '.*');
+        // Include other tenant routes
+        // We will refactor tenant.php to be just a list of routes without the Route::group wrapper
+        // or we can define them here directly.
+        // Let's require the modified tenant.php
+        require __DIR__.'/tenant.php';
     });
-}

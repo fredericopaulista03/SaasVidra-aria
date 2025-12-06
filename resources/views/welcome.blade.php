@@ -25,16 +25,34 @@
                     <a href="#faq" class="text-gray-600 hover:text-blue-600 transition">FAQ</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    @if (Route::has('landlord.login'))
-                        @auth
-                            <a href="{{ config('app.url') }}/dashboard" class="text-sm font-semibold text-gray-600 hover:text-gray-900">Dashboard</a>
-                        @else
-                            <a href="{{ route('landlord.login') }}" class="text-sm font-semibold text-gray-600 hover:text-gray-900">Entrar</a>
-                            @if (Route::has('landlord.register'))
-                                <a href="{{ route('landlord.register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Começar Grátis</a>
-                            @endif
-                        @endauth
+                    @if (Route::has('login'))
+            <nav class="-mx-3 flex flex-1 justify-end">
+                @auth
+                    <a
+                        href="{{ url('/dashboard') }}"
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                    >
+                        Dashboard
+                    </a>
+                @else
+                    <a
+                        href="{{ route('login') }}"
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                    >
+                        Log in
+                    </a>
+
+                    @if (Route::has('register'))
+                        <a
+                            href="{{ route('register') }}"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        >
+                            Register
+                        </a>
                     @endif
+                @endauth
+            </nav>
+        @endif
                 </div>
             </div>
         </div>
