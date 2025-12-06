@@ -126,10 +126,10 @@
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('landlord.tenants.index')" :active="request()->routeIs('landlord.tenants.*')">
+                <x-responsive-nav-link :href="route('landlord.empresas.index')" :active="request()->routeIs('landlord.tenants.*')">
                     {{ __('Vidraçarias') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('landlord.plans.index')" :active="request()->routeIs('landlord.plans.*')">
+                <x-responsive-nav-link :href="route('landlord.planos.index')" :active="request()->routeIs('landlord.plans.*')">
                     {{ __('Planos') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('landlord.subscriptions.index')" :active="request()->routeIs('landlord.subscriptions.*')">
