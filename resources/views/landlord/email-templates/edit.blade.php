@@ -52,7 +52,7 @@
                                 <div class="flex flex-wrap gap-2">
                                     @foreach(json_decode($emailTemplate->variables) as $variable)
                                         <code class="px-2 py-1 bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200 rounded text-sm">
-                                            {{ '{{' . $variable . '}}' }}
+                                            @{{ '{{' }}{{ $variable }}@{{ '}}' }}
                                         </code>
                                     @endforeach
                                 </div>
