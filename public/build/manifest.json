@@ -1,17 +1,44 @@
 {
+  "_bootstrap-CAiCLEjY.js": {
+    "file": "assets/bootstrap-CAiCLEjY.js",
+    "name": "bootstrap"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-JZmKD1VQ.css",
+    "file": "assets/app-CbaeQJ6g.css",
     "src": "resources/css/app.css",
     "isEntry": true,
-    "name": "app",
+    "name": "tenant",
     "names": [
-      "app.css"
+      "app.css",
+      "tenant.css"
+    ]
+  },
+  "resources/css/tenant.css": {
+    "file": "assets/app-CbaeQJ6g.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "tenant",
+    "names": [
+      "app.css",
+      "tenant.css"
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CJy8ASEk.js",
+    "file": "assets/app-8WaqvNCJ.js",
     "name": "app",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_bootstrap-CAiCLEjY.js"
+    ]
+  },
+  "resources/js/tenant.js": {
+    "file": "assets/tenant-C2n58f9H.js",
+    "name": "tenant",
+    "src": "resources/js/tenant.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap-CAiCLEjY.js"
+    ]
   }
 }
