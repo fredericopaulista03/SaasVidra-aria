@@ -26,12 +26,12 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">Telefone do Proprietário</label>
-                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->owner_phone }}</p>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->formatted_phone }}</p>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">CPF/CNPJ</label>
-                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->document }}</p>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->formatted_document }}</p>
                         </div>
 
                         <div>

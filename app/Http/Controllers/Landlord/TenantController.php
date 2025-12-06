@@ -39,7 +39,7 @@ class TenantController extends Controller
             'name' => 'required|string|max:255', // Owner Name
             'email' => 'required|email|max:255|unique:users,email',
             'owner_phone' => 'required|string|max:20',
-            'document' => 'required|string|max:18', // CPF or CNPJ
+            'document' => ['required', 'string', 'max:18', new \App\Rules\ValidCpfOrCnpj()],
             'website' => 'nullable|url|max:255',
             'password' => 'required|string|min:8|confirmed',
         ]);

@@ -81,4 +81,46 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Phone mask
+            const phoneInput = document.getElementById('owner_phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length <= 10) {
+                        // (00) 0000-0000
+                        value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+                    } else {
+                        // (00) 00000-0000
+                        value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+                    }
+                    
+                    e.target.value = value;
+                });
+            }
+
+            // CPF/CNPJ mask
+            const documentInput = document.getElementById('document');
+            if (documentInput) {
+                documentInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length <= 11) {
+                        // CPF: 000.000.000-00
+                        value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, '$1.$2.$3-$4');
+                    } else {
+                        // CNPJ: 00.000.000/0000-00
+                        value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2}).*/, '$1.$2.$3/$4-$5');
+                    }
+                    
+                    e.target.value = value;
+                });
+            }
+        });
+    </script>
+    @endpush
 </x-app-layout>
