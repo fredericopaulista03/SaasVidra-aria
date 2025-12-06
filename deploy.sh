@@ -26,9 +26,9 @@ php artisan route:cache
 php artisan view:cache
 
 # 5. Build Frontend Assets (if needed on server)
-# echo "🎨 Building frontend assets..."
-# npm install
-# npm run build
+echo "🎨 Building frontend assets..."
+npm install
+npm run build
 
 # 6. Restart Queue Workers (if using Supervisor)
 # echo "🔄 Restarting queue workers..."
