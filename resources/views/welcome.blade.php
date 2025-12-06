@@ -25,13 +25,13 @@
                     <a href="#faq" class="text-gray-600 hover:text-blue-600 transition">FAQ</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    @if (Route::has('login'))
+                    @if (Route::has('landlord.login'))
                         @auth
                             <a href="{{ config('app.url') }}/dashboard" class="text-sm font-semibold text-gray-600 hover:text-gray-900">Dashboard</a>
                         @else
-                            <a href="{{ config('app.url') }}/login" class="text-sm font-semibold text-gray-600 hover:text-gray-900">Entrar</a>
-                            @if (Route::has('register'))
-                                <a href="{{ config('app.url') }}/register" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Começar Grátis</a>
+                            <a href="{{ route('landlord.login') }}" class="text-sm font-semibold text-gray-600 hover:text-gray-900">Entrar</a>
+                            @if (Route::has('landlord.register'))
+                                <a href="{{ route('landlord.register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Começar Grátis</a>
                             @endif
                         @endauth
                     @endif
@@ -52,7 +52,7 @@
                 Tudo o que você precisa para crescer o seu negócio.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="{{ config('app.url') }}/register" class="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                <a href="{{ route('landlord.register') }}" class="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
                     Criar Conta Grátis
                 </a>
                 <a href="#features" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 text-lg px-8 py-4 rounded-full font-semibold shadow-sm transition">
@@ -123,7 +123,7 @@
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Gestão de Clientes</li>
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Suporte por Email</li>
                     </ul>
-                    <a href="{{ config('app.url') }}/register" class="block w-full py-3 px-6 bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold rounded-lg text-center transition">Começar Grátis</a>
+                    <a href="{{ route('landlord.register') }}" class="block w-full py-3 px-6 bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold rounded-lg text-center transition">Começar Grátis</a>
                 </div>
 
                 <!-- Pro Plan -->
@@ -137,7 +137,7 @@
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Suporte Prioritário WhatsApp</li>
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Domínio Personalizado</li>
                     </ul>
-                    <a href="{{ config('app.url') }}/register" class="block w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-center transition">Assinar Agora</a>
+                    <a href="{{ route('landlord.register') }}" class="block w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-center transition">Assinar Agora</a>
                 </div>
             </div>
         </div>

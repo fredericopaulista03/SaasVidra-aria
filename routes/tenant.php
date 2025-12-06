@@ -67,7 +67,12 @@ Route::middleware([
         ->name('tenant.chat.store')
         ->middleware(['auth', 'verified']);
 
-    require __DIR__.'/auth.php';
+    Route::name('tenant.')->group(function () {
+        Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+        require __DIR__.'/auth.php';
+    });
 });
 
 // Webhook Route (Public)

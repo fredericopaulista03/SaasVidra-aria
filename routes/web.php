@@ -22,12 +22,14 @@ Route::domain($primaryDomain)->group(function () {
     });
 
     Route::middleware('auth')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('landlord.profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('landlord.profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('landlord.profile.destroy');
     });
 
-    require __DIR__.'/auth.php';
+    Route::name('landlord.')->group(function () {
+        require __DIR__.'/auth.php';
+    });
 });
 
 // Redirect other central domains to the primary domain
