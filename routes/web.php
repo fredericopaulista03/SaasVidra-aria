@@ -21,8 +21,8 @@ Route::middleware(['web'])->group(function () {
     Route::middleware(['auth', 'verified', App\Http\Middleware\EnsureUserIsSuperAdmin::class])->prefix('admin')->name('landlord.')->group(function () {
         // Tenants Management
         Route::resource('empresas', App\Http\Controllers\Landlord\TenantController::class);
-        Route::post('empresas/{tenant}/suspender', [App\Http\Controllers\Landlord\TenantController::class, 'suspend'])->name('tenants.suspend');
-        Route::post('empresas/{tenant}/ativar', [App\Http\Controllers\Landlord\TenantController::class, 'activate'])->name('tenants.activate');
+        Route::post('empresas/{tenant}/suspender', [App\Http\Controllers\Landlord\TenantController::class, 'suspend'])->name('empresas.suspend');
+        Route::post('empresas/{tenant}/ativar', [App\Http\Controllers\Landlord\TenantController::class, 'activate'])->name('empresas.activate');
         
         // Plans Management
         Route::resource('planos', App\Http\Controllers\Landlord\PlanController::class);
