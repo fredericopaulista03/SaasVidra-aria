@@ -41,10 +41,10 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('landlord.tenants.index')" :active="request()->routeIs('landlord.tenants.*')">
+                        <x-nav-link :href="route('landlord.empresas.index')" :active="request()->routeIs('landlord.empresas.*')">
                             {{ __('Vidraçarias') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('landlord.plans.index')" :active="request()->routeIs('landlord.plans.*')">
+                        <x-nav-link :href="route('landlord.planos.index')" :active="request()->routeIs('landlord.planos.*')">
                             {{ __('Planos') }}
                         </x-nav-link>
                         <x-nav-link :href="route('landlord.subscriptions.index')" :active="request()->routeIs('landlord.subscriptions.*')">
