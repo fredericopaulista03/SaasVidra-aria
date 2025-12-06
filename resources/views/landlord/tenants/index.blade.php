@@ -38,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                            @foreach($tenants as $tenant)
+                            @forelse($tenants as $tenant)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         {{ $tenant->id }}
@@ -90,7 +90,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                                    <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
                                         Nenhuma vidraçaria cadastrada.
                                     </td>
                                 </tr>
