@@ -16,4 +16,12 @@ class Tenant extends BaseTenant
             'data',
         ];
     }
+
+    /**
+     * Get the subscriptions for the tenant.
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(\App\Models\Subscription::class);
+    }
 }
