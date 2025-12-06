@@ -27,6 +27,7 @@ Route::name('tenant.')->group(function () {
     Route::resource('clients', App\Http\Controllers\Tenant\ClientController::class);
     Route::resource('products', App\Http\Controllers\Tenant\ProductController::class);
     Route::resource('budgets', App\Http\Controllers\Tenant\BudgetController::class);
+    Route::get('/budgets/{budget}/pdf', [App\Http\Controllers\Tenant\BudgetController::class, 'downloadPdf'])->name('budgets.pdf');
 
     Route::get('/kanban', [App\Http\Controllers\Tenant\KanbanController::class, 'index'])->name('kanban.index');
     Route::put('/kanban/{card}', [App\Http\Controllers\Tenant\KanbanController::class, 'update'])->name('kanban.update');

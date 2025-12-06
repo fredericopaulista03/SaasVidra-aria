@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BudgetController extends Controller
 {
@@ -157,6 +158,20 @@ class BudgetController extends Controller
     {
         $budget->load(['client', 'items.product']);
         return view('tenant.budgets.show', compact('budget'));
+    }
+
+    /**
+     * Download budget as PDF.
+     */
+    public function downloadPdf(Budget $budget)
+    {
+        $budget->load(['client', 'items.product']);
+        
+        $pdf = Pdf::loadView('tenant.budgets.pdf', compact('budget'));
+        
+        $filename = 'orcamento-' . str_pad($budget->id, 6, '0', STR_PAD_LEFT) . '.pdf';
+        
+        return $pdf->download($filename);
     }
 
     /**
