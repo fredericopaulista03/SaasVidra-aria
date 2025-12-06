@@ -44,6 +44,15 @@
                         <x-nav-link :href="route('landlord.tenants.index')" :active="request()->routeIs('landlord.tenants.*')">
                             {{ __('Vidraçarias') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('landlord.plans.index')" :active="request()->routeIs('landlord.plans.*')">
+                            {{ __('Planos') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('landlord.subscriptions.index')" :active="request()->routeIs('landlord.subscriptions.*')">
+                            {{ __('Assinaturas') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('landlord.invoices.index')" :active="request()->routeIs('landlord.invoices.*')">
+                            {{ __('Faturas') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>

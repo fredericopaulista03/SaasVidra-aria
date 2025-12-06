@@ -46,7 +46,12 @@ class DashboardController extends Controller
             // Landlord User (Super Admin)
             $stats = [
                 'total_tenants' => \App\Models\Tenant::count(),
-                'recent_tenants' => \App\Models\Tenant::latest()->take(5)->get(),
+                'active_subscriptions' => \App\Models\Subscription::where('status', 'active')->count(),
+                'trial_subscriptions' => \App\Models\Subscription::where('status', 'trial')->count(),
+                'total_revenue' => \App\Models\Invoice::where('status', 'paid')->sum('amount'),
+                'pending_invoices' => \App\Models\Invoice::where('status', 'pending')->count(),
+                'recent_subscriptions' => \App\Models\Subscription::with(['tenant', 'plan'])->latest()->take(5)->get(),
+                'recent_invoices' => \App\Models\Invoice::with('tenant')->latest()->take(5)->get(),
             ];
             return view('landlord.dashboard', ['user' => $user, 'stats' => $stats]);
         }
