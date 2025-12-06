@@ -70,7 +70,7 @@
                 Tudo o que você precisa para crescer o seu negócio.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="{{ route('landlord.register') }}" class="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
                     Criar Conta Grátis
                 </a>
                 <a href="#features" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 text-lg px-8 py-4 rounded-full font-semibold shadow-sm transition">
@@ -141,7 +141,7 @@
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Gestão de Clientes</li>
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Suporte por Email</li>
                     </ul>
-                    <a href="{{ route('landlord.register') }}" class="block w-full py-3 px-6 bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold rounded-lg text-center transition">Começar Grátis</a>
+                    <a href="{{ route('register') }}" class="block w-full py-3 px-6 bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold rounded-lg text-center transition">Começar Grátis</a>
                 </div>
 
                 <!-- Pro Plan -->
@@ -155,7 +155,7 @@
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Suporte Prioritário WhatsApp</li>
                         <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Domínio Personalizado</li>
                     </ul>
-                    <a href="{{ route('landlord.register') }}" class="block w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-center transition">Assinar Agora</a>
+                    <a href="{{ route('register') }}" class="block w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-center transition">Assinar Agora</a>
                 </div>
             </div>
         </div>
