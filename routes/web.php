@@ -8,8 +8,8 @@ require __DIR__.'/debug.php';
 
 $primaryDomain = parse_url(config('app.url'), PHP_URL_HOST);
 
-// Register routes for the primary domain
-Route::domain($primaryDomain)->group(function () {
+// Register routes for the primary domain (Global for now to debug 404)
+Route::middleware(['web'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
@@ -47,3 +47,14 @@ foreach (config('tenancy.central_domains') as $domain) {
         })->where('path', '.*');
     });
 }
+
+Route::fallback(function () {
+    return response()->json([
+        'message' => 'Fallback Route Hit',
+        'host' => request()->getHost(),
+        'central_domains' => config('tenancy.central_domains'),
+        'primary_domain' => parse_url(config('app.url'), PHP_URL_HOST),
+        'tenancy_initialized' => tenancy()->initialized,
+        'tenant' => tenancy()->tenant,
+    ], 404);
+});
