@@ -76,7 +76,7 @@
                                         {{ $plan->subscriptions->count() }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <form action="{{ route('landlord.plans.toggle-status', $plan) }}" method="POST" class="inline">
+                                        <form action="{{ route('landlord.planos.toggle-status', $plan) }}" method="POST" class="inline">
                                             @csrf
                                             <button type="submit" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $plan->is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
                                                 {{ $plan->is_active ? 'Ativo' : 'Inativo' }}
@@ -84,9 +84,9 @@
                                         </form>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('landlord.plans.show', $plan) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 mr-3">Ver</a>
-                                        <a href="{{ route('landlord.plans.edit', $plan) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 mr-3">Editar</a>
-                                        <form action="{{ route('landlord.plans.destroy', $plan) }}" method="POST" class="inline" onsubmit="return confirm('Tem certeza que deseja excluir este plano?')">
+                                        <a href="{{ route('landlord.planos.show', $plan) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 mr-3">Ver</a>
+                                        <a href="{{ route('landlord.planos.edit', $plan) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 mr-3">Editar</a>
+                                        <form action="{{ route('landlord.planos.destroy', $plan) }}" method="POST" class="inline" onsubmit="return confirm('Tem certeza que deseja excluir este plano?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400">Excluir</button>
