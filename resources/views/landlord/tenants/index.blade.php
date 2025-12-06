@@ -19,39 +19,69 @@
                 </div>
             @endif
 
+            @if(session('error'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+            @endif
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                        <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID (Tenant)</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domínio</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Criado em</th>
-                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Domínio</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Criado em</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Ações</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            @forelse ($tenants as $tenant)
+                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            @foreach($tenants as $tenant)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ $tenant->id }}</div>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                        {{ $tenant->id }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                         @foreach($tenant->domains as $domain)
-                                            <a href="http://{{ $domain->domain }}" target="_blank" class="text-blue-600 hover:underline block">{{ $domain->domain }}</a>
+                                            <a href="http://{{ $domain->domain }}" target="_blank" class="text-blue-600 hover:underline">
+                                                {{ $domain->domain }}
+                                            </a>
                                         @endforeach
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Ativo
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                            {{ $tenant->status === 'active' ? 'bg-green-100 text-green-800' : '' }}
+                                            {{ $tenant->status === 'suspended' ? 'bg-red-100 text-red-800' : '' }}
+                                            {{ $tenant->status === 'inactive' ? 'bg-gray-100 text-gray-800' : '' }}">
+                                            {{ ucfirst($tenant->status ?? 'active') }}
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $tenant->created_at->format('d/m/Y') }}</div>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        {{ $tenant->created_at->format('d/m/Y') }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form action="{{ route('landlord.tenants.destroy', $tenant) }}" method="POST" class="inline-block" onsubmit="return confirm('ATENÇÃO: Isso excluirá TODOS os dados desta vidraçaria. Continuar?');">
+                                        <a href="{{ route('landlord.tenants.show', $tenant) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 mr-3">Ver</a>
+                                        
+                                        @if($tenant->status === 'active')
+                                            <form action="{{ route('landlord.tenants.suspend', $tenant) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="text-orange-600 hover:text-orange-900 dark:text-orange-400 mr-3" 
+                                                        onclick="return confirm('Tem certeza que deseja suspender este tenant?')">
+                                                    Suspender
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('landlord.tenants.activate', $tenant) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="text-green-600 hover:text-green-900 dark:text-green-400 mr-3">
+                                                    Ativar
+                                                </button>
+                                            </form>
+                                        @endif
+                                        
+                                        <form action="{{ route('landlord.tenants.destroy', $tenant) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600 hover:text-red-900">Excluir</button>

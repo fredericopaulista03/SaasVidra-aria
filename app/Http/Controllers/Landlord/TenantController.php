@@ -98,10 +98,38 @@ class TenantController extends Controller
     }
 
     /**
+     * Suspend a tenant
+     */
+    public function suspend(Tenant $tenant)
+    {
+        $tenant->update(['status' => 'suspended']);
+
+        return redirect()->route('landlord.tenants.index')
+            ->with('success', 'Tenant suspenso com sucesso!');
+    }
+
+    /**
+     * Activate a tenant
+     */
+    public function activate(Tenant $tenant)
+    {
+        $tenant->update(['status' => 'active']);
+
+        return redirect()->route('landlord.tenants.index')
+            ->with('success', 'Tenant ativado com sucesso!');
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Tenant $tenant)
     {
+        // Check if tenant has active subscriptions
+        if ($tenant->subscriptions()->where('status', 'active')->exists()) {
+            return redirect()->route('landlord.tenants.index')
+                ->with('error', 'Não é possível excluir um tenant com assinaturas ativas. Cancele as assinaturas primeiro.');
+        }
+
         $tenant->delete();
         // User deletion should cascade or be handled manually if not set up in DB
         // In Single DB, we should delete users with this tenant_id

@@ -19,9 +19,12 @@ Route::middleware(['web'])->group(function () {
 
     // Landlord Routes (Super Admin)
     Route::middleware(['auth', 'verified', App\Http\Middleware\EnsureUserIsSuperAdmin::class])->prefix('landlord')->name('landlord.')->group(function () {
+        // Tenants Management
         Route::resource('tenants', App\Http\Controllers\Landlord\TenantController::class);
+        Route::post('tenants/{tenant}/suspend', [App\Http\Controllers\Landlord\TenantController::class, 'suspend'])->name('tenants.suspend');
+        Route::post('tenants/{tenant}/activate', [App\Http\Controllers\Landlord\TenantController::class, 'activate'])->name('tenants.activate');
         
-        // SaaS Management
+        // Plans Management
         Route::resource('plans', App\Http\Controllers\Landlord\PlanController::class);
         Route::post('plans/{plan}/toggle-status', [App\Http\Controllers\Landlord\PlanController::class, 'toggleStatus'])->name('plans.toggle-status');
         
