@@ -76,9 +76,10 @@ class TenantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Tenant $tenant)
     {
-        //
+        $tenant->load(['domains', 'subscriptions.plan', 'subscriptions.invoices']);
+        return view('landlord.tenants.show', compact('tenant'));
     }
 
     /**
