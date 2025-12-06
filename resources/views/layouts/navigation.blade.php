@@ -53,6 +53,9 @@
                         <x-nav-link :href="route('landlord.invoices.index')" :active="request()->routeIs('landlord.invoices.*')">
                             {{ __('Faturas') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('landlord.settings.index')" :active="request()->routeIs('landlord.settings.*')">
+                            {{ __('Configurações') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -134,6 +137,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('landlord.invoices.index')" :active="request()->routeIs('landlord.invoices.*')">
                     {{ __('Faturas') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('landlord.settings.index')" :active="request()->routeIs('landlord.settings.*')">
+                    {{ __('Configurações') }}
                 </x-responsive-nav-link>
             @endif
         </div>

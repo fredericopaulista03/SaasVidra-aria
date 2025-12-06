@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/debug.php';
 
+// Webhook Routes (outside CSRF protection)
+Route::post('/webhooks/asaas', [App\Http\Controllers\WebhookController::class, 'asaas'])->name('webhooks.asaas');
+
 $primaryDomain = parse_url(config('app.url'), PHP_URL_HOST);
 
 // Register routes for the primary domain (Global)
@@ -25,6 +28,11 @@ Route::middleware(['web'])->group(function () {
         Route::resource('subscriptions', App\Http\Controllers\Landlord\SubscriptionController::class);
         Route::resource('invoices', App\Http\Controllers\Landlord\InvoiceController::class);
         Route::get('payment-logs', [App\Http\Controllers\Landlord\PaymentLogController::class, 'index'])->name('payment-logs.index');
+        
+        // Settings
+        Route::get('settings', [App\Http\Controllers\Landlord\SettingsController::class, 'index'])->name('settings.index');
+        Route::post('settings', [App\Http\Controllers\Landlord\SettingsController::class, 'update'])->name('settings.update');
+        Route::post('settings/test-email', [App\Http\Controllers\Landlord\SettingsController::class, 'testEmail'])->name('settings.test-email');
     });
 
     // Shared Auth Routes (Profile) - Adjusted to handle context dynamically or via middleware
