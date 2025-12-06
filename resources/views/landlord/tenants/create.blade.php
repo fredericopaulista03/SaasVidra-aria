@@ -13,12 +13,11 @@
                         @csrf
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Tenant ID -->
+                            <!-- Company Name -->
                             <div>
-                                <x-input-label for="id" :value="__('ID da Vidraçaria (Slug)')" />
-                                <x-text-input id="id" class="block mt-1 w-full" type="text" name="id" :value="old('id')" required autofocus placeholder="ex: vidracaria-centro" />
-                                <p class="text-xs text-gray-500 mt-1">Usado internamente. Apenas letras minúsculas e hífens.</p>
-                                <x-input-error :messages="$errors->get('id')" class="mt-2" />
+                                <x-input-label for="company_name" :value="__('Nome da Empresa')" />
+                                <x-text-input id="company_name" class="block mt-1 w-full" type="text" name="company_name" :value="old('company_name')" required autofocus placeholder="ex: Vidraçaria Centro" />
+                                <x-input-error :messages="$errors->get('company_name')" class="mt-2" />
                             </div>
 
                             <!-- Domain -->

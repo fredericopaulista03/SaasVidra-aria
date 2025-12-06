@@ -24,4 +24,12 @@ class Tenant extends BaseTenant
     {
         return $this->hasMany(\App\Models\Subscription::class);
     }
+
+    /**
+     * Get the company name from data column.
+     */
+    public function getCompanyNameAttribute()
+    {
+        return $this->data['company_name'] ?? $this->id;
+    }
 }

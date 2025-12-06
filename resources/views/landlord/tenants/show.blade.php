@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Detalhes do Tenant: ') }} {{ $tenant->id }}
+                {{ __('Detalhes da Empresa: ') }} {{ $tenant->id }}
             </h2>
             <a href="{{ route('landlord.tenants.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                 Voltar
@@ -20,7 +20,12 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">ID do Tenant</label>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">Nome da Empresa</label>
+                            <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->company_name }}</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">ID da Empresa</label>
                             <p class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ $tenant->id }}</p>
                         </div>
                         
@@ -131,8 +136,8 @@
                                 @csrf
                                 <button type="submit" 
                                         class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
-                                        onclick="return confirm('Tem certeza que deseja suspender este tenant?')">
-                                    Suspender Tenant
+                                        onclick="return confirm('Tem certeza que deseja suspender esta empresa?')">
+                                    Suspender Empresa
                                 </button>
                             </form>
                         @else
@@ -140,7 +145,7 @@
                                 @csrf
                                 <button type="submit" 
                                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Ativar Tenant
+                                    Ativar Empresa
                                 </button>
                             </form>
                         @endif
@@ -150,8 +155,8 @@
                             @method('DELETE')
                             <button type="submit" 
                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                                    onclick="return confirm('ATENÇÃO: Isso excluirá TODOS os dados deste tenant. Esta ação não pode ser desfeita! Continuar?')">
-                                Excluir Tenant
+                                    onclick="return confirm('ATENÇÃO: Isso excluirá TODOS os dados desta empresa. Esta ação não pode ser desfeita! Continuar?')">
+                                Excluir Empresa
                             </button>
                         </form>
                     </div>

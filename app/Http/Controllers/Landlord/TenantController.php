@@ -35,7 +35,7 @@ class TenantController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|string|alpha_dash|max:255|unique:tenants,id',
+            'company_name' => 'required|string|max:255',
             'name' => 'required|string|max:255', // Owner Name
             'email' => 'required|email|max:255|unique:users,email',
             'domain' => 'required|string|max:255|unique:domains,domain',
@@ -43,19 +43,29 @@ class TenantController extends Controller
         ]);
 
         DB::transaction(function () use ($validated) {
-            // 1. Create Tenant
-            $tenant = Tenant::create(['id' => $validated['id']]);
+            // 1. Generate unique tenant ID from company name
+            $baseSlug = \Illuminate\Support\Str::slug($validated['company_name']);
+            $tenantId = $baseSlug;
+            $counter = 1;
             
-            // 2. Create Domain
+            // Ensure uniqueness
+            while (Tenant::where('id', $tenantId)->exists()) {
+                $tenantId = $baseSlug . '-' . $counter;
+                $counter++;
+            }
+            
+            // 2. Create Tenant with company name in data column
+            $tenant = Tenant::create([
+                'id' => $tenantId,
+                'data' => [
+                    'company_name' => $validated['company_name'],
+                ],
+            ]);
+            
+            // 3. Create Domain
             $tenant->domains()->create(['domain' => $validated['domain']]);
 
-            // 3. Create Admin User for Tenant
-            // We need to initialize tenancy to create the user in the right context?
-            // Actually, in Single Database mode, we just create the user with tenant_id.
-            
-            // However, we are currently in the Central context.
-            // We can create the user directly.
-            
+            // 4. Create Admin User for Tenant
             $user = User::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
